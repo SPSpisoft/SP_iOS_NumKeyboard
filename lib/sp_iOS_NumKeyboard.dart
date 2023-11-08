@@ -1,4 +1,4 @@
-library numeric_keyboard;
+library sp_iOS_NumKeyboard;
 
 import 'package:flutter/material.dart';
 
@@ -16,6 +16,7 @@ class NumericKeyboard extends StatefulWidget {
 
   /// Action to trigger when right button is long pressed
   final Function()? rightButtonLongPressFn;
+  final Function()? leftButtonLongPressFn;
 
   /// Display a custom left icon
   final Widget? leftIcon;
@@ -37,6 +38,7 @@ class NumericKeyboard extends StatefulWidget {
       this.rightButtonLongPressFn,
       this.rightIcon,
       this.leftButtonFn,
+      this.leftButtonLongPressFn,
       this.leftIcon,
       this.mainAxisAlignment = MainAxisAlignment.spaceBetween})
       : super(key: key);
@@ -85,6 +87,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
               InkWell(
                   borderRadius: BorderRadius.circular(45),
                   onTap: widget.leftButtonFn,
+                  onLongPress: widget.leftButtonLongPressFn,
                   child: Container(
                       alignment: Alignment.center,
                       width: 50,
