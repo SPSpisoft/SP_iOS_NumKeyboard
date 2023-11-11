@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sp_iOS_NumKeyboard/sp_iOS_NumKeyboard.dart';
+import 'package:sp_ios_num_keyboard/sp_ios_num_keyboard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
             rightButtonFn: () {
               if (text.isEmpty) return;
               setState(() {
-
+                text = text.substring(0, text.length - 1);
               });
             },
             rightButtonLongPressFn: () {
@@ -71,18 +71,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 text = text.substring(0, text.length - 1);
               });
             },
+            doneButtonFn: ()=> print("done"),
+            cancelButtonFn: ()=> print("cancel"),
             rightIcon: const Stack(
               children: [
-                Align(
+                // Align(
+                //   child: Icon(
+                //     Icons.backspace_outlined,
+                //     color: Colors.grey,
+                //     size: 12,
+                //   ),
+                //   alignment: Alignment.topRight,
+                // ),
+                Center(
                   child: Icon(
                     Icons.backspace_outlined,
                     color: Colors.grey,
-                    size: 12,
+                    size: 27,
                   ),
-                  alignment: Alignment.topRight,
-                ),
-                Center(
-                  child: Text("Done", style: TextStyle(color: Colors.black54, fontSize: 20)),
 
                   // Icon(
                   //   Icons.check,
@@ -102,25 +108,26 @@ class _MyHomePageState extends State<MyHomePage> {
             leftButtonLongPressFn: () {
               if (text.isEmpty) return;
               setState(() {
-                if(text.substring(0,1) == '-') {
+                if (text.substring(0, 1) == '-') {
                   text = text.substring(1);
-                }else{
-                  text = "-"+ text;
+                } else {
+                  text = "-" + text;
                 }
               });
             },
             leftIcon: const Stack(
               children: [
-                Align(
-                  child: Text("-/+", style: TextStyle(color: Colors.grey, fontSize: 15)),
-                  alignment: Alignment.topRight,
-                ),
+                // Align(
+                //   child: Text("-/+",
+                //       style: TextStyle(color: Colors.grey, fontSize: 15)),
+                //   alignment: Alignment.topRight,
+                // ),
                 Center(
-                  child: Text(".", style: TextStyle(color: Colors.black, fontSize: 30)),
+                  child: Text(".",
+                      style: TextStyle(color: Colors.black, fontSize: 30)),
                 ),
               ],
             ),
-
             mainAxisAlignment: MainAxisAlignment.spaceBetween),
       ]))),
       // This trailing comma makes auto-formatting nicer for build methods.

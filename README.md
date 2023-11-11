@@ -9,7 +9,7 @@ A simple numeric keyboard widget
 Add `onscreen_num_keyboard: ^1.0.4` in your `pubspec.yaml` dependencies. And import it:
 
 ```dart
-import 'package:onscreen_num_keyboard/sp_iOS_NumKeyboard.dart';
+import 'package:onscreen_num_keyboard/sp_ios_num_keyboard.dart';
 ```
 
 ## How to use
