@@ -84,7 +84,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
-                      onTap: () => widget.cancelButtonFn,
+                      onTap: widget.cancelButtonFn,
                         child: Text(widget.cancelButtonText?? "Cancel", style: myTextButtonStyle)),
                   ) : SizedBox(),
 
@@ -92,7 +92,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
-                      onTap: ()=> widget.doneButtonFn,
+                      onTap: widget.doneButtonFn,
                         child: Text(widget.doneButtonText??"Done", style: myTextButtonStyle)),
                   ) : SizedBox(),
                 ],
@@ -132,7 +132,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                       onLongPress: widget.leftButtonLongPressFn,
                       child: Container(
                           alignment: Alignment.center,
-                          width: widget.sizeNumButton?? 27.parentW(cons),
+                          width: widget.sizeNumButton?? 25.parentW(cons),
                           height: widget.sizeNumButton?? 70,
                           child: widget.leftIcon)),
                   _calcButton('0', cons),
@@ -141,7 +141,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                       onLongPress: widget.rightButtonLongPressFn,
                       child: Container(
                           alignment: Alignment.center,
-                          width: widget.sizeNumButton?? 27.parentW(cons),
+                          width: widget.sizeNumButton?? 25.parentW(cons),
                           height: widget.sizeNumButton?? 70,
                           child: widget.rightIcon))
                 ],

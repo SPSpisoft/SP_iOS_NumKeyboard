@@ -71,8 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 text = text.substring(0, text.length - 1);
               });
             },
-            doneButtonFn: ()=> print("done"),
-            cancelButtonFn: ()=> print("cancel"),
+            doneButtonFn: () => print("done"),
+            cancelButtonFn: () => print("cancel"),
             rightIcon: const Stack(
               children: [
                 // Align(
@@ -98,7 +98,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-
             leftButtonFn: () {
               if (text.isEmpty || text.contains(".")) return;
               setState(() {
