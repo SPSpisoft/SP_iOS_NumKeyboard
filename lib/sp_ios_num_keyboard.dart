@@ -29,6 +29,9 @@ class NumericKeyboard extends StatefulWidget {
 
   /// Display a custom left icon
   final Widget? leftIcon;
+  final Widget? customTextButton;
+  final EdgeInsetsGeometry? textButtonPadding;
+  final bool textButtonOnTopKeys;
 
   /// Action to trigger when left button is pressed
   final Function()? leftButtonFn;
@@ -52,6 +55,9 @@ class NumericKeyboard extends StatefulWidget {
         this.doneButtonText,
         this.cancelButtonFn,
         this.doneButtonFn,
+        this.customTextButton,
+        this.textButtonPadding,
+        this.textButtonOnTopKeys = false,
       this.leftButtonFn,
       this.leftButtonLongPressFn,
       this.leftIcon,
@@ -74,29 +80,10 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
       padding: const EdgeInsets.only(left: 32, right: 32, top: 20),
       alignment: Alignment.center,
       child: LayoutBuilder(builder: (ctx, cons) {
-        myTextButtonStyle = TextStyle(color: Colors.blue, fontSize: 5.5.parentSP(cons));
+        myTextButtonStyle?? TextStyle(color: Colors.blue, fontSize: 6.5.parentSP(cons));
         return Column(
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  widget.cancelButtonFn != null ?
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: widget.cancelButtonFn,
-                        child: Text(widget.cancelButtonText?? "Cancel", style: myTextButtonStyle)),
-                  ) : SizedBox(),
-
-                  widget.doneButtonFn != null ?
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: widget.doneButtonFn,
-                        child: Text(widget.doneButtonText??"Done", style: myTextButtonStyle)),
-                  ) : SizedBox(),
-                ],
-              ),
+              widget.textButtonOnTopKeys ? textButtons() : SizedBox(),
               ButtonBar(
                 alignment: widget.mainAxisAlignment,
                 children: <Widget>[
@@ -104,7 +91,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                   _calcButton('2', cons),
                   _calcButton('3', cons),
                 ],
-                buttonPadding: EdgeInsets.all(0),
+                buttonPadding: const EdgeInsets.all(0),
               ),
               ButtonBar(
                 alignment: widget.mainAxisAlignment,
@@ -113,7 +100,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                   _calcButton('5', cons),
                   _calcButton('6',cons),
                 ],
-                buttonPadding: EdgeInsets.all(0),
+                buttonPadding: const EdgeInsets.all(0),
               ),
               ButtonBar(
                 alignment: widget.mainAxisAlignment,
@@ -122,10 +109,11 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                   _calcButton('8', cons),
                   _calcButton('9', cons),
                 ],
-                buttonPadding: EdgeInsets.all(0),
+                buttonPadding: const EdgeInsets.all(0),
               ),
               ButtonBar(
                 alignment: widget.mainAxisAlignment,
+                buttonPadding: const EdgeInsets.all(0),
                 children: <Widget>[
                   InkWell(
                       onTap: widget.leftButtonFn,
@@ -146,6 +134,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                           child: widget.rightIcon))
                 ],
               ),
+              widget.textButtonOnTopKeys ? SizedBox() : textButtons(),
             ],
           );
         }
@@ -169,5 +158,31 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
             style: widget.textStyle,
           ),
         ));
+  }
+
+  textButtons() {
+    return Padding(
+      padding: widget.textButtonPadding?? const EdgeInsets.all(2.0),
+      child: widget.customTextButton?? Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          widget.cancelButtonFn != null ?
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+                onTap: widget.cancelButtonFn,
+                child: Text(widget.cancelButtonText?? "Cancel", style: myTextButtonStyle)),
+          ) : const SizedBox(),
+
+          widget.doneButtonFn != null ?
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+                onTap: widget.doneButtonFn,
+                child: Text(widget.doneButtonText??"Done", style: myTextButtonStyle)),
+          ) : const SizedBox(),
+        ],
+      ),
+    );
   }
 }

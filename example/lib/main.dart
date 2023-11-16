@@ -73,6 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             doneButtonFn: () => print("done"),
             cancelButtonFn: () => print("cancel"),
+            textButtonStyle: TextStyle(color: Colors.blue),
+            textButtonPadding: EdgeInsets.all(10),
+            textButtonOnTopKeys: true,
             rightIcon: const Stack(
               children: [
                 // Align(
