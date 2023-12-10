@@ -1,6 +1,6 @@
 name: sp_ios_num_keyboard
 description: Flutter plugin to display a simple numeric keyboard on Android & iOS. (Customized  Onscreen-num-keyboard)
-version: 1.2.0
+version: 1.2.1
 homepage: https://github.com/SPSpisoft/SP_iOS_NumKeyboard
 
 environment:

@@ -119,11 +119,14 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             leftIcon: const Stack(
               children: [
-                // Align(
-                //   child: Text("-/+",
-                //       style: TextStyle(color: Colors.grey, fontSize: 15)),
-                //   alignment: Alignment.topRight,
-                // ),
+                Align(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("-/+",
+                        style: TextStyle(color: Colors.grey, fontSize: 15)),
+                  ),
+                  alignment: Alignment.topRight,
+                ),
                 Center(
                   child: Text(".",
                       style: TextStyle(color: Colors.black, fontSize: 30)),

@@ -1,3 +1,6 @@
+## 1.2.1
+
+- change box/position
 ## 1.2.0
 
 - debug & set new options

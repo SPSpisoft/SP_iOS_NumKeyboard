@@ -119,8 +119,9 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                       onTap: widget.leftButtonFn,
                       onLongPress: widget.leftButtonLongPressFn,
                       child: Container(
+                          decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
                           alignment: Alignment.center,
-                          width: widget.sizeNumButton?? 25.parentW(cons),
+                          width: widget.sizeNumButton?? 33.parentW(cons),
                           height: widget.sizeNumButton?? 70,
                           child: widget.leftIcon)),
                   _calcButton('0', cons),
@@ -128,8 +129,9 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                       onTap: widget.rightButtonFn,
                       onLongPress: widget.rightButtonLongPressFn,
                       child: Container(
+                          decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
                           alignment: Alignment.center,
-                          width: widget.sizeNumButton?? 25.parentW(cons),
+                          width: widget.sizeNumButton?? 33.parentW(cons),
                           height: widget.sizeNumButton?? 70,
                           child: widget.rightIcon))
                 ],
