@@ -78,68 +78,8 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
     myTextButtonStyle = widget.textButtonStyle;
     return LayoutBuilder(builder: (ctx, cons) {
       myTextButtonStyle?? TextStyle(color: Colors.blue, fontSize: 6.5.parentSP(cons));
-      return Column(
-          children: <Widget>[
-            widget.textButtonOnTopKeys ? textButtons() : SizedBox(),
-            ButtonBar(
-              alignment: widget.mainAxisAlignment,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                _calcButton('1', cons),
-                _calcButton('2', cons),
-                _calcButton('3', cons),
-              ],
-              buttonPadding: const EdgeInsets.all(0),
-            ),
-            ButtonBar(
-              alignment: widget.mainAxisAlignment,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                _calcButton('4', cons),
-                _calcButton('5', cons),
-                _calcButton('6',cons),
-              ],
-              buttonPadding: const EdgeInsets.all(0),
-            ),
-            ButtonBar(
-              alignment: widget.mainAxisAlignment,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                _calcButton('7', cons),
-                _calcButton('8', cons),
-                _calcButton('9', cons),
-              ],
-              buttonPadding: const EdgeInsets.all(0),
-            ),
-            ButtonBar(
-              alignment: widget.mainAxisAlignment,
-              mainAxisSize: MainAxisSize.min,
-              buttonPadding: const EdgeInsets.all(0),
-              children: <Widget>[
-                InkWell(
-                    onTap: widget.leftButtonFn,
-                    onLongPress: widget.leftButtonLongPressFn,
-                    child: Container(
-                        decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
-                        alignment: Alignment.center,
-                        width: widget.sizeNumButton?? 33.parentW(cons),
-                        height: widget.sizeNumButton?? 70,
-                        child: widget.leftIcon)),
-                _calcButton('0', cons),
-                InkWell(
-                    onTap: widget.rightButtonFn,
-                    onLongPress: widget.rightButtonLongPressFn,
-                    child: Container(
-                        decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
-                        alignment: Alignment.center,
-                        width: widget.sizeNumButton?? 33.parentW(cons),
-                        height: widget.sizeNumButton?? 70,
-                        child: widget.rightIcon))
-              ],
-            ),
-            widget.textButtonOnTopKeys ? SizedBox() : textButtons(),
-          ],
-        );
+      return
+        myView(cons);
       }
     );
   }
@@ -187,5 +127,74 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
         ],
       ),
     );
+  }
+
+  Widget keyboard(BoxConstraints cons) {
+    return Column(
+      children: <Widget>[
+        // widget.textButtonOnTopKeys ? textButtons() : SizedBox(),
+        ButtonBar(
+          alignment: widget.mainAxisAlignment,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _calcButton('1', cons),
+            _calcButton('2', cons),
+            _calcButton('3', cons),
+          ],
+          buttonPadding: const EdgeInsets.all(0),
+        ),
+        ButtonBar(
+          alignment: widget.mainAxisAlignment,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _calcButton('4', cons),
+            _calcButton('5', cons),
+            _calcButton('6',cons),
+          ],
+          buttonPadding: const EdgeInsets.all(0),
+        ),
+        ButtonBar(
+          alignment: widget.mainAxisAlignment,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _calcButton('7', cons),
+            _calcButton('8', cons),
+            _calcButton('9', cons),
+          ],
+          buttonPadding: const EdgeInsets.all(0),
+        ),
+        ButtonBar(
+          alignment: widget.mainAxisAlignment,
+          mainAxisSize: MainAxisSize.min,
+          buttonPadding: const EdgeInsets.all(0),
+          children: <Widget>[
+            InkWell(
+                onTap: widget.leftButtonFn,
+                onLongPress: widget.leftButtonLongPressFn,
+                child: Container(
+                    decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
+                    alignment: Alignment.center,
+                    width: widget.sizeNumButton?? 33.parentW(cons),
+                    height: widget.sizeNumButton?? 70,
+                    child: widget.leftIcon)),
+            _calcButton('0', cons),
+            InkWell(
+                onTap: widget.rightButtonFn,
+                onLongPress: widget.rightButtonLongPressFn,
+                child: Container(
+                    decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
+                    alignment: Alignment.center,
+                    width: widget.sizeNumButton?? 33.parentW(cons),
+                    height: widget.sizeNumButton?? 70,
+                    child: widget.rightIcon))
+          ],
+        ),
+        // widget.textButtonOnTopKeys ? SizedBox() : textButtons(),
+      ],
+    );
+  }
+
+  Widget myView(BoxConstraints cons) {
+    return keyboard(cons);
   }
 }
