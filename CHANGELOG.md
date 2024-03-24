@@ -1,3 +1,6 @@
+## 1.2.2
+
+- change size
 ## 1.2.1
 
 - change box/position

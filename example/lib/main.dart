@@ -43,7 +43,105 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: InkWell(
+          onTap: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) => Dialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0)),
+                      child: NumericKeyboard(
+                          onKeyboardTap: onKeyboardTap,
+                          sizeNumButton: 40,
+                          textStyle: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 28,
+                          ),
+                          rightButtonFn: () {
+                            if (text.isEmpty) return;
+                            setState(() {
+                              text = text.substring(0, text.length - 1);
+                            });
+                          },
+                          rightButtonLongPressFn: () {
+                            if (text.isEmpty) return;
+                            setState(() {
+                              text = text.substring(0, text.length - 1);
+                            });
+                          },
+                          doneButtonFn: () => print("done"),
+                          cancelButtonFn: () => print("cancel"),
+                          textButtonStyle: TextStyle(color: Colors.blue),
+                          textButtonPadding: EdgeInsets.all(10),
+                          textButtonOnTopKeys: false,
+                          rightIcon: const Stack(
+                            children: [
+                              // Align(
+                              //   child: Icon(
+                              //     Icons.backspace_outlined,
+                              //     color: Colors.grey,
+                              //     size: 12,
+                              //   ),
+                              //   alignment: Alignment.topRight,
+                              // ),
+                              Center(
+                                child: Icon(
+                                  Icons.backspace_outlined,
+                                  color: Colors.grey,
+                                  size: 27,
+                                ),
+
+                                // Icon(
+                                //   Icons.check,
+                                //   color: Colors.black,
+                                //   size: 25,
+                                // ),
+                              ),
+                            ],
+                          ),
+                          leftButtonFn: () {
+                            if (text.isEmpty || text.contains(".")) return;
+                            setState(() {
+                              text = text + ".";
+                            });
+                          },
+                          leftButtonLongPressFn: () {
+                            if (text.isEmpty) return;
+                            setState(() {
+                              if (text.substring(0, 1) == '-') {
+                                text = text.substring(1);
+                              } else {
+                                text = "-" + text;
+                              }
+                            });
+                          },
+                          leftIcon: const Stack(
+                            children: [
+                              Align(
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text("-/+",
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 15)),
+                                ),
+                                alignment: Alignment.topRight,
+                              ),
+                              Center(
+                                child: Text(".",
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 30)),
+                              ),
+                            ],
+                          ),
+                          ),
+                    ));
+          },
+          child: Text(widget.title,
+              style: Theme.of(context).textTheme.headline6?.apply(
+                  color: Colors.black,
+                  fontSizeFactor: 2.3,
+                  fontWeightDelta: 2)),
+        ),
       ),
       body: SafeArea(
           child: Center(
