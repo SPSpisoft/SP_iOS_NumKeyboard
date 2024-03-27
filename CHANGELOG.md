@@ -1,3 +1,7 @@
+## 1.2.4
+- add customTopWidget
+
+## 1.2.3
 ## 1.2.2
 
 - change size

@@ -52,6 +52,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           borderRadius: BorderRadius.circular(12.0)),
                       child: NumericKeyboard(
                           onKeyboardTap: onKeyboardTap,
+                          customTopWidget: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("asdasd   "),
+                            ],
+                          ),
                           sizeNumButton: 40,
                           textStyle: const TextStyle(
                             color: Colors.black,

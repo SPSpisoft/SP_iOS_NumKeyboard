@@ -30,6 +30,7 @@ class NumericKeyboard extends StatefulWidget {
   /// Display a custom left icon
   final Widget? leftIcon;
   final Widget? customTextButton;
+  final Widget? customTopWidget;
   final EdgeInsetsGeometry? textButtonPadding;
   final bool textButtonOnTopKeys;
 
@@ -61,6 +62,7 @@ class NumericKeyboard extends StatefulWidget {
       this.leftButtonFn,
       this.leftButtonLongPressFn,
       this.leftIcon,
+        this.customTopWidget,
       this.mainAxisAlignment = MainAxisAlignment.spaceBetween})
       : super(key: key);
 
@@ -130,67 +132,72 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
   }
 
   Widget keyboard(BoxConstraints cons) {
-    return Column(
-      children: <Widget>[
-        // widget.textButtonOnTopKeys ? textButtons() : SizedBox(),
-        ButtonBar(
-          alignment: widget.mainAxisAlignment,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            _calcButton('1', cons),
-            _calcButton('2', cons),
-            _calcButton('3', cons),
-          ],
-          buttonPadding: const EdgeInsets.all(0),
-        ),
-        ButtonBar(
-          alignment: widget.mainAxisAlignment,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            _calcButton('4', cons),
-            _calcButton('5', cons),
-            _calcButton('6',cons),
-          ],
-          buttonPadding: const EdgeInsets.all(0),
-        ),
-        ButtonBar(
-          alignment: widget.mainAxisAlignment,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            _calcButton('7', cons),
-            _calcButton('8', cons),
-            _calcButton('9', cons),
-          ],
-          buttonPadding: const EdgeInsets.all(0),
-        ),
-        ButtonBar(
-          alignment: widget.mainAxisAlignment,
-          mainAxisSize: MainAxisSize.min,
-          buttonPadding: const EdgeInsets.all(0),
-          children: <Widget>[
-            InkWell(
-                onTap: widget.leftButtonFn,
-                onLongPress: widget.leftButtonLongPressFn,
-                child: Container(
-                    decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
-                    alignment: Alignment.center,
-                    width: widget.sizeNumButton?? 33.parentW(cons),
-                    height: widget.sizeNumButton?? 70,
-                    child: widget.leftIcon)),
-            _calcButton('0', cons),
-            InkWell(
-                onTap: widget.rightButtonFn,
-                onLongPress: widget.rightButtonLongPressFn,
-                child: Container(
-                    decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
-                    alignment: Alignment.center,
-                    width: widget.sizeNumButton?? 33.parentW(cons),
-                    height: widget.sizeNumButton?? 70,
-                    child: widget.rightIcon))
-          ],
-        ),
-        // widget.textButtonOnTopKeys ? SizedBox() : textButtons(),
-      ],
+    return IntrinsicWidth(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          widget.customTopWidget?? SizedBox(),
+          ButtonBar(
+            alignment: widget.mainAxisAlignment,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              _calcButton('1', cons),
+              _calcButton('2', cons),
+              _calcButton('3', cons),
+            ],
+            buttonPadding: const EdgeInsets.all(0),
+          ),
+          ButtonBar(
+            alignment: widget.mainAxisAlignment,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              _calcButton('4', cons),
+              _calcButton('5', cons),
+              _calcButton('6',cons),
+            ],
+            buttonPadding: const EdgeInsets.all(0),
+          ),
+          ButtonBar(
+            alignment: widget.mainAxisAlignment,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              _calcButton('7', cons),
+              _calcButton('8', cons),
+              _calcButton('9', cons),
+            ],
+            buttonPadding: const EdgeInsets.all(0),
+          ),
+          ButtonBar(
+            alignment: widget.mainAxisAlignment,
+            mainAxisSize: MainAxisSize.min,
+            buttonPadding: const EdgeInsets.all(0),
+            children: <Widget>[
+              InkWell(
+                  onTap: widget.leftButtonFn,
+                  onLongPress: widget.leftButtonLongPressFn,
+                  child: Container(
+                      decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
+                      alignment: Alignment.center,
+                      width: widget.sizeNumButton?? 33.parentW(cons),
+                      height: widget.sizeNumButton?? 70,
+                      child: widget.leftIcon)),
+              _calcButton('0', cons),
+              InkWell(
+                  onTap: widget.rightButtonFn,
+                  onLongPress: widget.rightButtonLongPressFn,
+                  child: Container(
+                      decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
+                      alignment: Alignment.center,
+                      width: widget.sizeNumButton?? 33.parentW(cons),
+                      height: widget.sizeNumButton?? 70,
+                      child: widget.rightIcon))
+            ],
+          ),
+          // widget.textButtonOnTopKeys ? SizedBox() : textButtons(),
+        ],
+      ),
     );
   }
 
